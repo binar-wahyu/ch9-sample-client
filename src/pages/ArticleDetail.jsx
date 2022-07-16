@@ -1,17 +1,46 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 function ArticleDetail() {
   const params = useParams();
+  const [loading, setLoading] = useState(true);
+  const [article, setArticle] = useState();
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function fetchData() {
+      setLoading(true);
+      const response = await fetch(
+        `http://localhost:4000/articles/${params.id}`
+      );
+      const data = await response.json();
+
+      if (ignore) return;
+
+      setLoading(false);
+      setArticle(data);
+    }
+
+    fetchData();
+
+    return () => {
+      ignore = true;
+    };
+  }, [params.id]);
 
   return (
     <Container className="mt-3">
-      <h1>Article {params.id}</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis nulla
-        est ipsum tenetur cumque fugiat sequi rem, in nostrum reprehenderit
-        itaque odio, cum quam repellat eveniet officiis iste dolor cupiditate?
-      </p>
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <>
+          <h1>{article.title}</h1>
+          <p>{article.body}</p>
+        </>
+      )}
     </Container>
   );
 }

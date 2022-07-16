@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let ignore = false;
