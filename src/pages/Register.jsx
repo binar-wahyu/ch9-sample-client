@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 
 function Register() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -10,13 +10,13 @@ function Register() {
       <h1>Register</h1>
 
       <Form>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </Form.Group>
