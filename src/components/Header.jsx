@@ -1,7 +1,37 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 function Header() {
+  const { user, logout } = useAuth();
+
+  function jsx_rightSection() {
+    if (user === null) {
+      return <Navbar.Text>Loading user...</Navbar.Text>;
+    }
+
+    if (user === false) {
+      return (
+        <Nav>
+          <Nav.Link as={NavLink} to="/login">
+            Login
+          </Nav.Link>
+
+          <Nav.Link as={NavLink} to="/register">
+            Register
+          </Nav.Link>
+        </Nav>
+      );
+    }
+
+    return (
+      <Nav>
+        <Navbar.Text>{user.username}</Navbar.Text>
+        <Nav.Link onClick={() => logout()}>Logout</Nav.Link>
+      </Nav>
+    );
+  }
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -21,15 +51,7 @@ function Header() {
             </Nav.Link>
           </Nav>
 
-          <Nav>
-            <Nav.Link as={NavLink} to="/login">
-              Login
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/register">
-              Register
-            </Nav.Link>
-          </Nav>
+          {jsx_rightSection()}
         </Navbar.Collapse>
       </Container>
     </Navbar>
