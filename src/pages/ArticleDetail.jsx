@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { getAccessToken } from "../context/auth";
 
 function ArticleDetail() {
   const params = useParams();
@@ -14,7 +15,12 @@ function ArticleDetail() {
     async function fetchData() {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:4000/articles/${params.id}`
+        `http://localhost:4000/articles/${params.id}`,
+        {
+          headers: new Headers({
+            Authorization: getAccessToken(),
+          }),
+        }
       );
       const data = await response.json();
 

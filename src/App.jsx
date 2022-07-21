@@ -9,6 +9,7 @@ import BranchJakarta from "./pages/BranchJakarta";
 import BranchPadang from "./pages/BranchPadang";
 import ArticleDetail from "./pages/ArticleDetail";
 import { ProvideAuth } from "./context/auth";
+import RequireAuth from "./components/RequireAuth";
 
 function App() {
   return (
@@ -28,7 +29,14 @@ function App() {
               <Route path="jakarta" element={<BranchJakarta />} />
               <Route path="padang" element={<BranchPadang />} />
             </Route>
-            <Route path="/article/:id" element={<ArticleDetail />} />
+            <Route
+              path="/article/:id"
+              element={
+                <RequireAuth>
+                  <ArticleDetail />
+                </RequireAuth>
+              }
+            />
           </Routes>
         </div>
       </ProvideAuth>
