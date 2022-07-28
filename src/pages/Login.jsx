@@ -28,14 +28,19 @@ function Login() {
       }),
     });
 
-    setLoading(false);
-
     if (response.ok) {
       const data = await response.json();
-      login(data.accessToken);
+
+      await login(data.accessToken);
+
+      setLoading(false);
+
       navigate("/");
     } else {
       const data = await response.json();
+
+      setLoading(false);
+
       if (data && data.error) {
         if (
           data.error.code === "auth/user-not-found" ||
