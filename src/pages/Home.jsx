@@ -36,7 +36,7 @@ function Home() {
           articles.map((article) => (
             <Col lg={4} key={article.id}>
               <Card body>
-                <Link to={`/article/${article.id}`}>{article.title}</Link>
+                <Link to={`/articles/${article.id}`}>{article.title}</Link>
               </Card>
             </Col>
           ))
