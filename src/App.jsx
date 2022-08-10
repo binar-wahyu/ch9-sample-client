@@ -30,7 +30,7 @@ function App() {
               <Route path="padang" element={<BranchPadang />} />
             </Route>
             <Route
-              path="/article/:id"
+              path="/articles/:id"
               element={
                 <RequireAuth>
                   <ArticleDetail />
