@@ -8,7 +8,7 @@ function Home() {
         {[...Array(5)].map((_, index) => (
           <Col lg={4} key={index}>
             <Card body>
-              <Link to={`/article/${index + 1}`}>Article {index + 1}</Link>
+              <Link to={`/articles/${index + 1}`}>Article {index + 1}</Link>
             </Card>
           </Col>
         ))}
