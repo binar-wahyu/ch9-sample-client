@@ -22,7 +22,7 @@ function App() {
             <Route path="jakarta" element={<BranchJakarta />} />
             <Route path="padang" element={<BranchPadang />} />
           </Route>
-          <Route path="/article/:id" element={<ArticleDetail />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
